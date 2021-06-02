@@ -1,0 +1,12 @@
+/djangoenv
+
+
+/myapp/__pycache__
+
+/myapp/myapp/__pycache__
+
+
+/myapp/hello_world/__pycache__
+
+
+/myapp/hello_world/migrations/__pycache__

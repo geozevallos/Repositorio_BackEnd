@@ -1,0 +1,4 @@
+/booksenv
+/library/library/__pycache__
+/library/catalog/__pycache__
+/library/catalog/migrations/__pycache__

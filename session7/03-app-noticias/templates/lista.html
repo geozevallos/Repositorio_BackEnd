@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+
+<!-- macro.noticia => de mi macro noticia -->
+
+{% import 'macro-noticia.html' as macro %}
+
+{% block contenido %}
+    
+
+
+
+
+    {% for noticia in news %}
+    
+      <!-- <div class="card" style="width: 18rem;">
+        <img src="{{noticia['picture']}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{noticia["title"]}}</h5>
+          <p class="card-text">{{noticia["body"]}}</p>
+     
+        </div>
+      </div> -->
+
+      {{ macro.noticia(noticia["title"], noticia["body"], noticia["picture"], ispremium) }}
+
+
+      {% endfor %}
+
+
+
+
+
+   
+{% endblock %}
