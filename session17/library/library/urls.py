@@ -15,12 +15,41 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.urls.conf import re_path
-from catalog import views
+from django.urls.conf import include, re_path
+from catalog import views, viewsets
+from rest_framework import routers
+
+#Creando como restframework
+router = routers.DefaultRouter()
+router.register(r'books', viewsets.BooksViewSet)
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+
+    #Carga el router
+    path('', include(router.urls)),
+    path('api/', include('rest_framework.urls', namespace='rest_framework')),
+
+
+
+
+    #Rutas genericas
+    # path('books', views.BookCreate.as_view()),
+     #ruta de actualización
+    # path('book/<pk>/', views.BookUpdate.as_view()),
+    
+    path('authors', views.AuthorCreate.as_view()),
+
+    path('authors/list', views.AuthorsList.as_view()),
+
+       path('catalog/books', views.new_book),
+    #Otra manera
+    path('catalog/book/<pk>/update', views.new_book),
     re_path(r'^catalog[\/]{0,1}$', views.catalog_list),
+   
+   
+    path('admin/', admin.site.urls),
+    
 
     
     re_path(r'catalog\/(?P<editorial>[a-zA-Z]+)', views.get_books_by_editorial)

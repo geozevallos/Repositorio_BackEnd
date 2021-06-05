@@ -1,21 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books Catalog</title>
-</head>
-<body>
-    <table class="table">
-        {% for book in books %}
-        <tr>
-            <td>{{book.title}}</td>
-            <td>{{book.autor}}</td>
-            <td>{{book.published_year}}</td>
-            <td>{{book.editorial}}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% extends 'layout.html' %} 
+<!-- {% block content %} {#% load split_name %#} 
+{# Esto es un comentario: Iterar libros del catalogo #} {{books | random}} -->
+<!-- <br />
+{{books | slice:":2" | join:","}}
+<br />
+{{books | join:" // "}} -->
+
+<!-- importar el archivo donde está mi pipe -->
+{% load format_name %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>ID</td>
+      <th scope="col">Titulo</th>
+      <th scope="col">Titulo con cut</th>
+      <th scope="col">Autor</th>
+      <th scope="col">Año de publicación</th>
+      <th scope="col">Editorial</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <td>{{book.id}}</td>
+      <td>{{book.title | upper }}</td>
+      <td>{{book.title | cut:" " }}</td>
+      <!-- <td>{{book.autor | format_name}}</td> -->
+      <td>{{book.author.first_name}}</td>
+      <td>{{book.published_year | add:"2"}}</td>
+      <td>
+        <a href="/catalog/{{book.editorial}}/books">{{book.editorial }}</a>  
+        </td>
+        <td>
+          <a class="btn btn-sm btn-info" 
+          href="/book/{{book.id}}">Editar</a>
+        </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<button class="btn btn-primary float-right" >
+ <a href='/catalog/books'>Agregar</a> 
+</button>
+
+{% endblock %}
+
+

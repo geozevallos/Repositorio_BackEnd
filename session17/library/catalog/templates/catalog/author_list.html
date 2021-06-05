@@ -1,0 +1,33 @@
+{% extends 'layout.html' %} 
+
+{% block content %}  
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Nacionalidad</th>
+      <th scope="col">Género</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for author in object_list %}
+    <tr>
+      <td>{{author.id}}</td>
+      <td>{{author.first_name}}</td>
+      <td>{{author.last_name}}</td>
+      <td>{{author.nationality}}</td>
+      <td>{{author.genere}}</td>
+
+      
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock %}
+
+

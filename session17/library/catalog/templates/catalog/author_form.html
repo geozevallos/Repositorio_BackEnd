@@ -1,0 +1,14 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+
+<h1>New Author</h1>
+<form action="" method="POST">
+    
+
+<!-- Generar token para q solo funcione en este formulario -->
+    {% csrf_token %}
+    {{form.as_ul}}
+    <input type="submit" value="submit">
+</form>
+{% endblock %}
